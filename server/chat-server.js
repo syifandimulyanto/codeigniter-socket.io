@@ -24,6 +24,5 @@ io.on('connection', function(socket){
 	socket.on("typing", function(data) {
 		socket.in(data.room).emit("isTyping", data);
 	});
-
-
 });
+

@@ -74,6 +74,7 @@ body {
 .messages .message.left .avatar {
   background-color: #f5886e;
   float: left;
+  background-size: cover;
 }
 .messages .message.left .text_wrapper {
   background-color: #ffe6cb;
@@ -89,6 +90,7 @@ body {
 .messages .message.right .avatar {
   background-color: #fdbf68;
   float: right;
+  background-size: cover;
 }
 .messages .message.right .text_wrapper {
   background-color: #c7eafc;

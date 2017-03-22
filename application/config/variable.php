@@ -10,7 +10,12 @@ $config['googleplus']['redirect_uri']     = 'http://localhost/meetup-frontend/au
 $config['googleplus']['api_key']          = 'AIzaSyDYPlDYXiIq9MunjKooEejcBnnotsX8hHM';
 $config['googleplus']['scopes']           = array();
 
-$config['app_url']						  = 'http://localhost/meetup-frontend/';
-$config['app_asset_url']				  = 'http://localhost/meetup-frontend/assets/';
+//SERVER
+$config['app_url']						  = 'https://chats.syifandimulyanto.id/';
+$config['app_asset_url']				  = 'https://chats.syifandimulyanto.id/assets/';
+$config['socker_url']					  = 'https://chats.syifandimulyanto.id:889';
 
-$config['socker_url']					  = 'http://localhost:889';
+//LOCAL
+// $config['app_url']						  = 'http://localhost/meetup-frontend/';
+// $config['app_asset_url']				  = 'http://localhost/meetup-frontend/assets/';
+// $config['socker_url']					  = 'http://localhost:889';
