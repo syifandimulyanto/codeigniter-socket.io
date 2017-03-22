@@ -47,11 +47,15 @@
 
 	</div>
 </div>
-
+<script type="<?php echo $this->config->item('socker_url'); ?>/socket.io/socket.io.js"></script>
 <script type="text/javascript">
 	
 	var url 		= '<?php echo app_url(); ?>';
 	var users_id 	= '<?php echo get_users('id'); ?>';
+	var surl        = '<?php echo $this->config->item('socker_url'); ?>';
+
+	var socket  = io.connect(surl);
+    socket.emit('join:room', {'room_name' : 'public'});
 
 	$(window).on('load', function(){
 		get_chats('all');
@@ -105,6 +109,9 @@
 	        {	
         		if(message.status)
         		{
+
+        			socket.emit('send:message', message);
+
         			$('.message_input').val('');
         			var $message;
 	        		var message_side = 'right';
@@ -114,7 +121,7 @@
 	                $message.addClass('appeared');
 	                $message.find('.avatar').css('background-image', 'url(' + message.avatar + ')');
 	                $('.messages').append($message);
-	                $('.messages').animate({ scrollTop: $('.messages').prop('scrollHeight') }, 300)
+	                $('.messages').animate({ scrollTop: $('.messages').prop('scrollHeight') }, 300);
         		}
         		
 	        	
@@ -137,5 +144,19 @@
             send_message($('.message_input').val(), 'all')
         }
     });
+
+    socket.on('message', function(data){
+		var $message;
+		var message_side = 'left';
+
+        $message = $($('.message_template').clone().html());
+        $message.addClass(message_side).find('.text').html(data.content);
+        $message.addClass('appeared');
+        $message.find('.avatar').css('background-image', 'url(' + data.avatar + ')');
+        $('.messages').append($message);
+        $('.messages').animate({ scrollTop: $('.messages').prop('scrollHeight') }, 300);
+
+    });
+
 
 </script>

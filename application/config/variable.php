@@ -6,14 +6,14 @@ $config['fb_app_secret']			      = '5aa15e9bbd66a2a354e57a33005bb2ce';
 $config['googleplus']['application_name'] = 'Chat Socket';
 $config['googleplus']['client_id']        = '909029024725-4cf6bidafncqeve0n5nl6ikm241vpqlt.apps.googleusercontent.com';
 $config['googleplus']['client_secret']    = '3sSto8ToQJjtU-5u9CIk2Fv0';
-$config['googleplus']['redirect_uri']     = 'http://localhost/meetup-frontend/auth/googleplus';
+$config['googleplus']['redirect_uri']     = 'https://chats.syifandimulyanto.id/auth/googleplus';
 $config['googleplus']['api_key']          = 'AIzaSyDYPlDYXiIq9MunjKooEejcBnnotsX8hHM';
 $config['googleplus']['scopes']           = array();
 
 //SERVER
 $config['app_url']						  = 'https://chats.syifandimulyanto.id/';
 $config['app_asset_url']				  = 'https://chats.syifandimulyanto.id/assets/';
-$config['socker_url']					  = 'https://chats.syifandimulyanto.id:889';
+$config['socker_url']					  = 'http://128.199.255.206:889';
 
 //LOCAL
 // $config['app_url']						  = 'http://localhost/meetup-frontend/';
