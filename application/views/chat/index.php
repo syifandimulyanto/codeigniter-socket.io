@@ -6,7 +6,7 @@
 			    <div class="panel-heading"><span class="glyphicon glyphicon-user"></span> Users Online</div>
 			    <div class="panel-body">
 			        <ul class="list-group" id="listaOnline">
-			            <li class="list-group-item" id="2352"><span class="label label-success">●</span> - Rafael</li>
+			            
 			        </ul>
 			    </div>
 			</div>
@@ -47,18 +47,45 @@
 
 	</div>
 </div>
-<script type="<?php echo $this->config->item('socker_url'); ?>/socket.io/socket.io.js"></script>
+
+
 <script type="text/javascript">
 	
 	var url 		= '<?php echo app_url(); ?>';
 	var users_id 	= '<?php echo get_users('id'); ?>';
+	var email 		= '<?php echo get_users('email'); ?>';
 	var surl        = '<?php echo $this->config->item('socker_url'); ?>';
+	var room        = 'public';
 
 	var socket  = io.connect(surl);
-    socket.emit('join:room', {'room_name' : 'public'});
+    socket.emit('join:room', {'room_name' : room, 'email' : email});
+
+    socket.on('message', function(data){
+
+		var $message;
+		var message_side = 'left';
+
+        $message = $($('.message_template').clone().html());
+        $message.addClass(message_side).find('.text').html(data.content);
+        $message.addClass('appeared');
+        $message.find('.avatar').css('background-image', 'url(' + data.avatar + ')');
+        $('.messages').append($message);
+        $('.messages').animate({ scrollTop: $('.messages').prop('scrollHeight') }, 300);
+
+    });
+
+    socket.on('get users',function(data){
+		var html = "";
+		for(i=0; i<data.length; i++ ){
+			html += '<li class="list-group-item"><span class="label label-success">●</span> - '+data[i]+'</li>';
+		}
+		$('#listaOnline').html(html);
+
+		console.log(data);
+	});
 
 	$(window).on('load', function(){
-		get_chats('all');
+		get_chats(room);
 	});
 
 	function get_chats(group)
@@ -136,27 +163,16 @@
 
     $(document).on('click', '.send_message', function(e){
     	e.preventDefault();
-    	send_message($('.message_input').val(), 'all')
+    	send_message($('.message_input').val(), room)
     });
 
      $('.message_input').keyup(function (e) {
         if (e.which === 13) {
-            send_message($('.message_input').val(), 'all')
+            send_message($('.message_input').val(), room)
         }
     });
 
-    socket.on('message', function(data){
-		var $message;
-		var message_side = 'left';
 
-        $message = $($('.message_template').clone().html());
-        $message.addClass(message_side).find('.text').html(data.content);
-        $message.addClass('appeared');
-        $message.find('.avatar').css('background-image', 'url(' + data.avatar + ')');
-        $('.messages').append($message);
-        $('.messages').animate({ scrollTop: $('.messages').prop('scrollHeight') }, 300);
-
-    });
 
 
 </script>

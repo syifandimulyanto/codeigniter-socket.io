@@ -9,7 +9,7 @@ class Custommodel extends CI_Model
 		$this->db->from('chats');
 		$this->db->join('users', 'chats.users_id = users.id', 'LEFT');
 		$this->db->where('chats.group', $group);
-		$this->db->order_by('chats.create_at', 'DESC');
+		$this->db->order_by('chats.create_at', 'ASC');
 		return $this->db->get()->result();
 	}	
 

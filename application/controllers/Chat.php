@@ -36,6 +36,7 @@ class Chat extends CI_Controller {
 		                $response['status']     = TRUE; 
 		                $response['content']  	= $this->input->post('content');
 		                $response['avatar'] 	= get_users('avatar');
+		                $response['room']		= $param['group'];
 		            }
 	            }else
 	            {

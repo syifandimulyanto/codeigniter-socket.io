@@ -10,12 +10,6 @@
 
   <script type="text/javascript" src="<?php echo $this->config->item('socker_url').'/socket.io/socket.io.js'; ?>"></script>
 
-  <script type="text/javascript">
-      var surl        = '<?php echo $this->config->item('socker_url'); ?>';
-      var socket  = io.connect(surl);
-      socket.emit('join:room', {'room_name' : 'all'});
-  </script>
-
 </head>
 <body>
 
